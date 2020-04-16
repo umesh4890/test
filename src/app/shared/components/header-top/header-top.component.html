@@ -1,0 +1,25 @@
+<mat-toolbar class="header-top mat-elevation-z6" color="primary">
+    <mat-toolbar-row>
+        <span><button mat-button (click)="sidenavToggle()"><i class="material-icons"> menu</i> </button></span>
+        <span><img src="assets/images/logo-shayona-1.png" height="30px"></span>
+
+        <span class="example-spacer"></span>
+
+
+        <span><button mat-icon-button [matMenuTriggerFor]="loginmenu">
+            <mat-icon>mood</mat-icon>
+          </button>
+          <mat-menu #loginmenu="matMenu">
+            <button mat-menu-item routerLink="/form/create">
+              <mat-icon>account_circle</mat-icon>
+              <span (click)="testFuncion()">{{userData.name}}</span>
+        </button>
+
+        <button mat-menu-item routerLink="/dashboard">
+              <mat-icon>input</mat-icon>
+              <span (click)="logOut()">Logout</span>
+            </button>
+        </mat-menu>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>

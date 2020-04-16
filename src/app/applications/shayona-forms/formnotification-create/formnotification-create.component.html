@@ -1,0 +1,283 @@
+<div class="inner-main">
+    <div class="inner-content">
+        <div class="container-fluid">
+            <div class="row">
+                <router-outlet></router-outlet>
+                <div class="col-3">
+                  <div class="white-block add-content-sidebar mat-elevation-z2 mt-4 mb-5">
+                    <mat-nav-list>
+                        <a mat-list-item (click)="formSelect('information')" [ngClass]="formInfomation ? 'active':''">
+                          <h3 matLine> <a [routerLink] = "['/forms/formedit',formId]">Form Information </a></h3>
+                        </a>
+                        <mat-divider></mat-divider>
+                        <a mat-list-item  (click)="formSelect('formFields')" [ngClass]="formFields ? 'active':''">
+                          <h3 matLine> <a [routerLink] = "['/forms/formfieldcreate',formId]">Form Fields </a></h3>
+                        </a>
+                        <mat-divider></mat-divider>
+                        <a mat-list-item   (click)="formSelect('formNotification')" [ngClass]="formNotification ? 'active':''">
+                          <h3 matLine> <a [routerLink] = "['/forms/formnotificationcreate',formId]">Form Notification </a></h3>
+                        </a>
+                    </mat-nav-list>
+                </div>
+                </div>
+                <div class="col-5">
+                    <div class="mt-4">
+                        <button mat-raised-button color="primary" type="button" name="email_btn" id = "email_btn_id" (click)="openForm('email_btn_id')">Create Email </button>
+                        <button mat-raised-button class="ml-3" color="primary" type="button" name="sms_btn" id = "sms_btn_id" (click)="openForm('sms_btn_id')">Create Sms</button>
+                  </div>
+                  <div class="white-block mat-elevation-z2 mt-4 mb-5">
+                      <form class="example-form" *ngIf="emailForm" [formGroup] = "formNotificationEmail" (ngSubmit) = "formNotificationEmailSubmit()">
+                          <div class="row">
+                            <h5 matLine>Form Notification</h5>
+                          
+                            <div class="col-12">
+                              <mat-form-field>
+                                <mat-label>Event</mat-label>
+                                <mat-select name = "event_sel" id = "event_id" formControlName = "event_sel" (selectionChange) = "onChangeEmail($event)">
+                                    <mat-option value="admin_notification">Admin Notification</mat-option>
+                                    <mat-option value="user_notification">User Notification</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf = "formNotificationEmail.controls['event_sel'].hasError('required')">this is required</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                  <input type ="text" name ="subject_txt" id = "subject_id" formControlName="subject_txt" matInput placeholder = "Subject">
+                                  <mat-error *ngIf = "formNotificationEmail.controls['subject_txt'].hasError('required')">this is required</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                <input type ="text" name ="email_from_name_txt" id = "email_from_name_id" formControlName="email_from_name_txt" matInput placeholder = "Email From Name">
+                                <mat-error *ngIf = "formNotificationEmail.controls['email_from_name_txt'].hasError('required')">this is required</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                <input type ="text" name ="email_from_txt" id = "email_from_id" formControlName="email_from_txt" matInput placeholder = "Email From">
+                                <mat-error *ngIf = "formNotificationEmail.controls['email_from_txt'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "formNotificationEmail.controls['email_from_txt'].hasError('email')">Email Not Valid</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field *ngIf="showToEmail">
+                                <input type ="text" name ="to_email_txt"  id = "to_email_id" formControlName="to_email_txt" matInput placeholder = "To Email">
+                                <mat-error *ngIf = "formNotificationEmail.controls['to_email_txt'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "formNotificationEmail.controls['to_email_txt'].hasError('email')">Email Not Valid</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                <input type ="text" name ="cc_email_txt" id = "cc_email_id" formControlName="cc_email_txt" matInput placeholder = "Cc Email">
+                                <mat-error *ngIf = "formNotificationEmail.controls['cc_email_txt'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "formNotificationEmail.controls['cc_email_txt'].hasError('email')">Email Not Valid</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                <input type ="text" name ="bcc_email_txt" id = "bcc_email_id" formControlName="bcc_email_txt" matInput placeholder = "Bcc Email">
+                                <mat-error *ngIf = "formNotificationEmail.controls['bcc_email_txt'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "formNotificationEmail.controls['bcc_email_txt'].hasError('email')">Email Not Valid</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                              <mat-form-field >
+                                <textarea rows="5" type ="textarea" name ="email_msg_textarea" id = "email_msg_id" formControlName="email_msg_textarea" matInput placeholder = "Email Message"></textarea>
+                                <mat-error *ngIf = "formNotificationEmail.controls['email_msg_textarea'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "formNotificationEmail.controls['email_msg_textarea'].hasError('maxlength')">Maximum of 255 characters</mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-12 mt-2">
+                              <button mat-raised-button color="primary">Submit</button>
+                              <button mat-raised-button class="ml-3" color="warn" [routerLink] = "['/forms/formlist']">Cancel</button>
+                            </div>
+                          </div>
+                      </form>
+  
+                      <form class="example-form" *ngIf="smsForm" [formGroup] = "formNotificationSms" (ngSubmit) = "formNotificationSmsSubmit()">
+                        <div class="row">
+                          <h5 matLine>Form Notification</h5>
+                          <div class="col-12">
+                            <mat-form-field>
+                              <mat-label>Event</mat-label>
+                              <mat-select name = "event_sel" id = "event_id" formControlName = "event_sel" (selectionChange) = "onChangeSms($event)">
+                                  <mat-option value="admin_notification">Admin Notification</mat-option>
+                                  <mat-option value="user_notification">User Notification</mat-option>
+                              </mat-select>
+                              <mat-error *ngIf = "formNotificationSms.controls['event_sel'].hasError('required')">this is required</mat-error>
+                            </mat-form-field>
+                          </div>
+                          
+                          <div class="col-12">
+                            <mat-form-field *ngIf="showSmsNumber">
+                              <input type ="text" name ="phone_num_txt" id = "phone_num_id" pattern="[6789][0-9]{9}" formControlName="phone_num_txt" matInput placeholder = "Mobile Number">
+                              <mat-error *ngIf = "formNotificationSms.controls['phone_num_txt'].hasError('required')">this is required</mat-error>
+                              <mat-error *ngIf = "formNotificationSms.controls['phone_num_txt'].hasError('pattern')">this number not valid</mat-error>
+                            </mat-form-field>
+                          </div>
+  
+                          <div class="col-12">
+                            <mat-form-field>
+                              <textarea rows="5" type ="textarea" name ="sms_msg_textarea" id = "sms_msg_id" formControlName="sms_msg_textarea" matInput placeholder = "Sms Message"></textarea>
+                              <mat-error *ngIf = "formNotificationSms.controls['sms_msg_textarea'].hasError('required')">this is required</mat-error>
+                              <mat-error *ngIf = "formNotificationSms.controls['sms_msg_textarea'].hasError('maxlength')">Maximum of 255 characters</mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-12 mt-2">
+                            <button mat-raised-button color="primary">Submit</button>
+                           <button mat-raised-button class="ml-3" color="warn" [routerLink] = "['/forms/formlist']">Cancel</button>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+            
+  
+                  <div class="col-md-12">
+                  <div class="row justify-content-center test-scrollbar-error">
+                    <div class="col-md-12">
+                        <div class="white-block mat-elevation-z3 mt-4 mb-0 p-0">
+                            <div class="table-top">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h3 style="margin-left: 8px; margin-top: 8px;">List Form Notification</h3>
+                                        <span style="margin-left: 8px;">Form Notification Data</span>
+                                    </div>
+              
+                                    <div class="col-lg-6 text-right">
+                                        <!-- <button mat-raised-button color="warn">Delete All</button> -->
+                                        <button mat-icon-button>
+                                            <mat-icon >help_outline</mat-icon>
+                                        </button>
+                                        <button mat-icon-button>
+                                                <mat-icon >filter_list</mat-icon>
+                                            </button>
+                                        <button mat-icon-button>
+                                            <mat-icon>get_app</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="fixed-action-btn1 ">
+                                <button mat-fab color="warn" routerLink="['/forms/formfieldcreate',formId]" routerLinkActive="list-item-active" class="add-cart-button">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div> -->
+                            <div class="datatable-box ">
+                                <table mat-table class="my-table" matSort [dataSource]="dataSource">
+              
+                                    <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+                                    <ng-container matColumnDef="select">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <mat-checkbox>
+                                            </mat-checkbox>
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <mat-checkbox>
+                                            </mat-checkbox>
+                                        </td>
+                                    </ng-container>
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="ID">
+                                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                                        <td mat-cell *matCellDef="let element "> {{element.id}} </td>
+                                    </ng-container>
+                                    
+                                    <!-- Name Column -->
+                                    <!-- <ng-container matColumnDef="FormId">
+                                      <th mat-header-cell *matHeaderCellDef>Form Id</th>
+                                      <td mat-cell *matCellDef="let element ">{{element.form_id}}</td>
+                                    </ng-container> -->
+              
+                                    <ng-container matColumnDef="Event">
+                                        <th mat-header-cell *matHeaderCellDef>Event</th>
+                                        <td mat-cell *matCellDef="let element ">
+                                          {{ (element.event == "admin_notification")? 'Admin Notification':'User Notification'}}
+                                        </td>
+                                    </ng-container>
+              
+                                    <ng-container matColumnDef="Subject">
+                                      <th mat-header-cell *matHeaderCellDef>Subject</th>
+                                      <td mat-cell *matCellDef="let element "> {{element.subject}} </td>
+                                    </ng-container>
+  
+                                    <ng-container matColumnDef="EmailFromName">
+                                        <th mat-header-cell *matHeaderCellDef>Email From Name</th>
+                                        <td mat-cell *matCellDef="let element "> {{element.email_from_name}} </td>
+                                    </ng-container>
+              
+                                    <ng-container matColumnDef="EmailFrom">
+                                        <th mat-header-cell *matHeaderCellDef>Email From</th>
+                                        <td mat-cell *matCellDef="let element "> {{element.email_from}} </td>
+                                    </ng-container>
+              
+                                    <ng-container matColumnDef="ToEmail">
+                                      <th mat-header-cell *matHeaderCellDef>To Email</th>
+                                      <td mat-cell *matCellDef="let element "> {{element.to_email}} </td>
+                                  </ng-container>
+              
+                                  <ng-container matColumnDef="CcEmail">
+                                      <th mat-header-cell *matHeaderCellDef>Cc Email</th>
+                                      <td mat-cell *matCellDef="let element "> {{element.cc_email}} </td>
+                                  </ng-container>
+              
+                                  <ng-container matColumnDef="BccEmail">
+                                      <th mat-header-cell *matHeaderCellDef>Bcc Email</th>
+                                      <td mat-cell *matCellDef="let element "> {{element.bcc_email}} </td>
+                                  </ng-container>
+  
+                                  <ng-container matColumnDef="EmailMsg">
+                                    <th mat-header-cell *matHeaderCellDef>Email Msg</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.email_message}} </td>
+                                  </ng-container>
+                                  
+                                  <ng-container matColumnDef="SmsMsg"> 
+                                    <th mat-header-cell *matHeaderCellDef>Sms Msg</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.sms_message}} </td>
+                                  </ng-container>
+  
+                                  <ng-container matColumnDef="Contact"> 
+                                    <th mat-header-cell *matHeaderCellDef>Contact</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
+                                  </ng-container>
+                                    <!-- Weight Column -->
+                                    
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td mat-cell *matCellDef="let element ">
+                                          <button mat-icon-button mat-sm-button color="primary" class="mr-1"><mat-icon><a (click) = "formFieldEditId(element.id)" [routerLink] = "['/forms/formnotificationedit',formId,element.id]">edit</a></mat-icon></button>
+                                          <button mat-icon-button mat-sm-button color="warn" (click)="openDialog(element.id)"><mat-icon>delete</mat-icon></button>
+                                        </td>
+                                    </ng-container>
+              
+              
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                            <div class="table-footer">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <span>Row per page: 50 <i class="material-icons">arrow_drop_down</i></span>
+                                    </div>
+                                    <div class="col-lg-6 text-right">
+                                        <span>1 - 5 of 20</span>
+                                        <button mat-icon-button><i class="material-icons">first_page</i></button>
+                                        <button mat-icon-button><i class="material-icons">chevron_left</i></button>
+                                        <button mat-icon-button><i class="material-icons">chevron_right</i></button>
+                                        <button mat-icon-button><i class="material-icons">last_page</i></button>
+                                        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                   </div>
+                </div>
+  
+                
+             </div>
+         </div>
+     </div>
+  </div>

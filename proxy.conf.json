@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+      "target": "http://www.shayona360apioffline.com",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }

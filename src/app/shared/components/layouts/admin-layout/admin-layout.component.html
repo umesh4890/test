@@ -1,0 +1,11 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="over" fixedInViewport="true" >
+        <app-header-side-nav ></app-header-side-nav>
+    </mat-sidenav>
+
+<mat-sidenav-content>
+    <app-header-top></app-header-top>
+    
+    <router-outlet></router-outlet>
+</mat-sidenav-content>
+</mat-sidenav-container>

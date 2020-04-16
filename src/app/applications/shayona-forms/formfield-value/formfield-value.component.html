@@ -1,0 +1,126 @@
+<div class="inner-main">
+    <div class="inner-content">
+        <div class="container-fluid">
+            <div class="row">
+                <router-outlet></router-outlet>
+                <div class="col-3">
+                </div>
+                <div class="col-7">
+                    <div class="white-block mat-elevation-z2 mt-4 mb-5">
+                        <form class="example-form" [formGroup] = "fieldValueData" (ngSubmit) = "fieldsValueSubmit()">
+                            <div class="row">
+                              <h4 matLine>Form Field value </h4>
+                              <mat-form-field >
+                                <textarea rows="5" type = "textarea" name = "value_textarea" id = "value_id" formControlName = "value_textarea" matInput placeholder="Enter Value"></textarea>
+                                <mat-error *ngIf = "fieldValueData.controls['value_textarea'].hasError('required')">this is required</mat-error>
+                                <mat-error *ngIf = "fieldValueData.controls['value_textarea'].hasError('unique')">this is unique</mat-error>
+                              </mat-form-field>
+  
+                                <div class="col-12">
+                                  <button mat-raised-button color="primary">Add</button>
+                                  <button mat-raised-button class="ml-3" color="warn" [routerLink] = "['/formfield/create',formId]">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+  
+                    <div class="row justify-content-center test-scrollbar-error">
+                      <div class="col-md-12 product-detail">
+                          <div class="white-block mat-elevation-z3 mt-4 mb-0 p-0">
+                              <div class="table-top">
+                                  <div class="row">
+                                      <div class="col-lg-6">
+                                          <h3>List Form Field</h3>
+                                          <span>All Form Fields Data</span>
+                                      </div>
+                
+                                      <div class="col-lg-6 text-right">
+                                          <!-- <button mat-raised-button color="warn">Delete All</button> -->
+                                          <button mat-icon-button>
+                                              <mat-icon >help_outline</mat-icon>
+                                          </button>
+                                          <button mat-icon-button>
+                                                  <mat-icon >filter_list</mat-icon>
+                                              </button>
+                                          <button mat-icon-button>
+                                              <mat-icon >get_app</mat-icon>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- <div class="fixed-action-btn1 ">
+                                  <button mat-fab color="warn" routerLink="['/formfield/create',formId]" routerLinkActive="list-item-active" class="add-cart-button">
+                                      <i class="material-icons">add</i>
+                                  </button>
+                              </div> -->
+                              <div class="datatable-box ">
+                                  <table mat-table class="my-table" matSort [dataSource]="dataSource">
+                
+                                      <!--- Note that these columns can be defined in any order.
+                                                The actual rendered columns are set as a property on the row definition" -->
+                                      <ng-container matColumnDef="select">
+                                          <th mat-header-cell *matHeaderCellDef>
+                                              <mat-checkbox>
+                                              </mat-checkbox>
+                                          </th>
+                                          <td mat-cell *matCellDef="let element">
+                                              <mat-checkbox>
+                                              </mat-checkbox>
+                                          </td>
+                                      </ng-container>
+                                      <!-- Position Column -->
+                                      <ng-container matColumnDef="FieldID">
+                                          <th mat-header-cell *matHeaderCellDef> Field ID </th>
+                                          <td mat-cell *matCellDef="let element "> {{element.form_field_id}} </td>
+                                      </ng-container>
+                                      
+                                      <!-- Name Column -->
+                                      <ng-container matColumnDef="Value">
+                                          <th mat-header-cell *matHeaderCellDef>Value</th>
+                                          <td mat-cell *matCellDef="let element ">{{element.value}}</td>
+                                      </ng-container>
+  
+                                      <ng-container matColumnDef="SortOrder">
+                                          <th mat-header-cell *matHeaderCellDef> Sort Order</th>
+                                          <td mat-cell *matCellDef="let element">{{element.sortorder}}</td>
+                                      </ng-container>
+  
+                                      <!-- Weight Column -->
+                                      
+                                      <ng-container matColumnDef="Action">
+                                          <th mat-header-cell *matHeaderCellDef> Action </th>
+                                          <td mat-cell *matCellDef="let element;index as i;">
+                                          <button mat-raised-button (click)="openDialog(element,i)">Edit</button>
+                                            <button mat-icon-button mat-sm-button color="warn"><mat-icon>delete</mat-icon></button>
+                                          </td>
+                                      </ng-container>
+  
+                                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                  </table>
+                              </div>
+                              <div class="table-footer">
+                                  <div class="row">
+                                      <div class="col-lg-6">
+                                          <span>Row per page: 50 <i class="material-icons">arrow_drop_down</i></span>
+                                      </div>
+                                      <div class="col-lg-6 text-right">
+                                          <span>1 - 5 of 20</span>
+                                          <button mat-icon-button><i class="material-icons">first_page</i></button>
+                                          <button mat-icon-button><i class="material-icons">chevron_left</i></button>
+                                          <button mat-icon-button><i class="material-icons">chevron_right</i></button>
+                                          <button mat-icon-button><i class="material-icons">last_page</i></button>
+                                          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+   </div>
+  </div>
+  
+  

@@ -1,0 +1,25 @@
+<!-- <h3 mat-dialog-title>Value </h3> -->
+<div mat-dialog-content>
+    <mat-form-field>
+      <input [(ngModel)]="data.element.value" type = "text" name = "value_txt" id = "value_id" matInput placeholder="Enter Value">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input [(ngModel)]="data.element.sortorder" type = "text" name = "sortorder_txt" id = "sortorder__id" matInput placeholder="Enter SortOrder">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" (click)="onSaveClick(data)">save</button>
+    <button mat-raised-button class="ml-3" color="primary" type="button"  (click)="onCancelClick()">Cancel</button>
+  </div>
+  
+  
+  <!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+  <div mat-dialog-content>
+    <p>What's your favorite animal?</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.animal">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button >Ok</button>
+  </div> -->

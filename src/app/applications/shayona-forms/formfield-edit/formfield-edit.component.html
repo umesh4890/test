@@ -1,0 +1,95 @@
+<div class="inner-main">
+    <div class="inner-content">
+        <div class="container-fluid">
+            <div class="row">
+              <router-outlet></router-outlet>
+              <div class="col-3">
+                  <!-- <div class="white-block add-content-sidebar mat-elevation-z2 mt-4 mb-5">
+                      <mat-nav-list>
+                          <a mat-list-item  [routerLink] = "['/form/edit',editId]"  (click)="formSelect('information')" [ngClass]="formInfomation ? 'active':''">
+                              <h3 matLine>Form Information</h3>
+                          </a>
+                          <mat-divider></mat-divider>
+                          <a mat-list-item [routerLink] = "['/formfield/create']" (click)="formSelect('formFields')" [ngClass]="formFields ? 'active':''">
+                              <h3 matLine>Form Fields</h3>
+                          </a>
+                          <mat-divider></mat-divider>
+                          <a mat-list-item  [routerLink] = "['/']" (click)="formSelect('formNotification')" [ngClass]="formNotification ? 'active':''">
+                              <h3 matLine >Form Notification</h3>
+                          </a>
+                      </mat-nav-list>
+                  </div> -->
+              </div>
+              <div class="col-7">
+                    <div class="white-block mat-elevation-z2 mt-4 mb-5">
+                        <form class="example-form" [formGroup] = "editFormFields" (ngSubmit) = "editFormFieldsSubmit()">
+                        <div class="row">
+                          <h4 matLine>Form Fields</h4>
+  
+                          <mat-form-field [style.display]="'none'">
+                            <input type ="text"  name ="id" id = "id" formControlName = "id" matInput placeholder = "id">
+                            <mat-error *ngIf = "editFormFields.controls['id'].hasError('required')">this is required</mat-error>
+                          </mat-form-field>
+  
+                          <mat-form-field [style.display]="'none'">
+                            <input type ="text"  name ="form_id" id = "form_id" formControlName = "form_id" matInput placeholder = "Form id">
+                            <mat-error *ngIf = "editFormFields.controls['form_id'].hasError('required')">this is required</mat-error>
+                          </mat-form-field>
+  
+                          <mat-form-field>
+                            <input type ="text" name = "field_label_txt" id = "field_label_id" formControlName = "field_label_txt" matInput placeholder = "Field Label">
+                            <mat-error *ngIf = "editFormFields.controls['field_label_txt'].hasError('required')">this is required</mat-error>
+                            <mat-error *ngIf = "editFormFields.controls['field_label_txt'].hasError('pattern')">String Only Allowed</mat-error>
+                          </mat-form-field>
+  
+                          <mat-form-field >
+                              <input type ="text" name = "field_name_txt" id = "field_name_id" formControlName = "field_name_txt" matInput placeholder = "Field Name">
+                              <mat-error *ngIf = "editFormFields.controls['field_name_txt'].hasError('required')">this is required</mat-error>
+                              <mat-error *ngIf = "editFormFields.controls['field_name_txt'].hasError('pattern')">No Spaces Allowed</mat-error>
+                          </mat-form-field>
+  
+                          <mat-form-field>
+                            <mat-label >Field Type</mat-label >
+                            <mat-select [disabled]="true" name = "field_type_sel" id = "field_type_id" formControlName = "field_type_sel">
+                                <mat-option value="text">Text</mat-option>
+                                <mat-option value="selection">Selection</mat-option>
+                                <mat-option value="radio">Radio</mat-option>
+                                <mat-option value="checkBox">CheckBox</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf = "editFormFields.controls['field_type_sel'].hasError('required')">this is required</mat-error>
+                          </mat-form-field>
+  
+                          <mat-label>Is Required</mat-label>
+                          <mat-radio-group value="{{ radio }}" name = "is_required_radio" formControlName = "is_required_radio">
+                            <mat-radio-button  value ="1" class="ml-3">Yes</mat-radio-button>
+                            <mat-radio-button  value ="0" class="ml-3">No</mat-radio-button>
+                          </mat-radio-group>
+  
+                          <mat-form-field *ngIf="fieldTypeSel == 'text' ">
+                            <input type ="text" name = "default_value_txt" id = "default_value_id" formControlName = "default_value_txt" matInput placeholder = "Default value">
+                            <mat-error *ngIf = "editFormFields.controls['default_value_txt'].hasError('required')">this is required</mat-error>
+                          </mat-form-field>
+  
+                          <mat-form-field *ngIf="fieldTypeSel == 'text' ">
+                            <input type ="text" name = "length_txt" id = "length_id" formControlName = "length_txt" matInput placeholder = "Length">
+                            <mat-error *ngIf = "editFormFields.controls['length_txt'].hasError('required')">this is required</mat-error>
+                            <mat-error *ngIf = "editFormFields.controls['length_txt'].hasError('pattern')">Integer Only Allowed</mat-error>
+                            <mat-error *ngIf = "editFormFields.controls['length_txt'].hasError('max')">Maxima length Is 255</mat-error>
+                          </mat-form-field>
+                        </div>
+                        <br>
+                        <div class="col-12" style="margin-left: -30px;">
+                          <button mat-raised-button color="primary" [disabled]="editFormFields.invalid">Submit</button>
+                          <button mat-raised-button class="ml-3" color="warn" [routerLink] = "['/formfield/create',formId]">Cancel</button>
+                        </div>
+                        </form>
+                       
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  

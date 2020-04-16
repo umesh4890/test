@@ -1,0 +1,150 @@
+<div class="nav-bottom-1 mat-elevation-z2">
+    <div class="container-fluid">
+        <div class="row">
+           
+
+            <div class="col-8">
+                <div >
+                    <p class="mt-2 mb-0">Home / Add Product</p>
+                </div>
+            </div>
+            <div class="col-4 text-right">
+                <button mat-icon-button>
+                    <mat-icon >help_outline</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon >cached</mat-icon>
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/dashboard"><span>Add Category</span></button>
+                    <button mat-menu-item routerLink="/form/create"><span>Dashboard</span></button>
+                    <button mat-menu-item routerLink="/homeview"><span>List Product</span></button>
+                    <button mat-menu-item><span>List Category</span></button>
+                    <button mat-menu-item><span>List Attribuite</span></button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT START -->
+    <main class="main">
+        <div class="container">
+            <div class="row justify-content-center ">
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/catalog.png" alt="catalog">
+                        <mat-card-content>
+                            <h3>Catalog</h3>
+                            <p>
+                                Add, View and manage products
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/sales.png" alt="sales">
+                        <mat-card-content>
+                            <h3>Sales</h3>
+                            <p>
+                                List all sales order and all inquiry list.
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/buyer.png" alt="buyer">
+                        <mat-card-content>
+                            <h3>Buyer</h3>
+                            <p>
+                                Add, manage buyer and list all of buyer.
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/data-transfer.png" alt="data-transfer">
+                        <mat-card-content>
+                            <h3>Data Transfer</h3>
+                            <p>
+                                Import product, location and generate sheets.
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/reindex.png" alt="reindex">
+                        <mat-card-content>
+                            <h3>Reindex</h3>
+                            <p>
+                                Generate new product and view in frontend.
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/location.png" alt="location">
+                        <mat-card-content>
+                            <h3>Location</h3>
+                            <p>
+                                List all country, state, city and locality
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/settings.png" alt="settings">
+                        <mat-card-content>
+                            <h3>Settings</h3>
+                            <p>
+                                Email setting and SMS setting and test Email
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/seo.png" alt="seo">
+                        <mat-card-content>
+                            <h3>SEO</h3>
+                            <p>
+                                Meta data, Meta content and genarate sitemap
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/seller.png" alt="Seller">
+                        <mat-card-content>
+                            <h3>Seller</h3>
+                            <p>
+                                Add seller org. and user, view user and org.
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-2 mt-4 mb-3">
+                    <mat-card>
+                        <img mat-card-image src="assets/images/admin.png" alt="admin">
+                        <mat-card-content>
+                            <h3>Admin</h3>
+                            <p>
+                                Add role and manage all user and log
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- MAIN CONTENT END -->

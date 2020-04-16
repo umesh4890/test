@@ -1,0 +1,50 @@
+<div class="inner-main">
+	<div class="inner-content">
+		<div class="container-fluid">
+			<div class="row">
+					<router-outlet></router-outlet>
+				<div class="col-3">
+					  <div class="white-block add-content-sidebar mat-elevation-z2 mt-4 mb-5">
+						  <mat-nav-list>
+							  <a mat-list-item [routerLink] = "['/forms/formedit',formId]" (click)="formSelect('information')" [ngClass]="formInfomation ? 'active':''">
+								  <h3 matLine>Form Information</h3>
+							  </a>
+							  <mat-divider></mat-divider>
+							  <a mat-list-item [routerLink] = "['/forms/formfieldcreate',formId]" (click)="formSelect('formFields')" [ngClass]="formFields ? 'active':''">
+								<h3 matLine>Form Fields</h3>
+							  </a>
+							  <mat-divider></mat-divider>
+							  <a mat-list-item [routerLink] = "['/forms/formnotificationcreate',formId]" (click)="formSelect('formNotification')" [ngClass]="formNotification ? 'active':''">
+								<h3 matLine>Form Notification</h3>
+							  </a>
+						  </mat-nav-list>
+					  </div>
+				</div>
+				  <div class="col-7">
+					  <div class="white-block mat-elevation-z2 mt-4 mb-5">
+						  <form class="example-form" [formGroup] = "editFormName" (ngSubmit) = "editFormNameSubmit()">
+							  <div class="row">
+								<mat-form-field [style.display]="'none'">
+									<input type ="text"  name ="id" id = "id" formControlName="id" matInput placeholder=" Form id">
+									<mat-error *ngIf = "editFormName.controls['id'].hasError('required')">this is required</mat-error>
+								</mat-form-field>
+
+								  <mat-form-field>
+									  <input type ="text" name ="form_name_txt" id = "form_name" formControlName="form_name_txt" matInput placeholder=" Form Name">
+									  <mat-error *ngIf = "editFormName.controls['form_name_txt'].hasError('required')">this is required</mat-error>
+									  <mat-hint class="error">{{msg}}</mat-hint>
+								  </mat-form-field>
+								 
+							  </div>
+							  <div class="col-12" style="margin-left:-30px;">
+								<button mat-raised-button color="primary" [disabled]="editFormName.invalid">Submit</button>
+								<button mat-raised-button class="ml-3" color="warn" [routerLink] = "['/forms/formlist']">Cancel</button>
+							  </div>
+
+						  </form>
+					  </div>
+				  </div>
+			</div>
+		</div>
+	</div>
+</div>

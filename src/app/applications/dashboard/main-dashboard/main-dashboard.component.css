@@ -1,0 +1,15 @@
+.mat-card-image {
+    width: 60px;
+    margin: 0 0 15px !important;
+}
+
+.mat-card h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.mat-card {
+    text-align: center;
+    position: relative;
+    padding: 30px;
+}

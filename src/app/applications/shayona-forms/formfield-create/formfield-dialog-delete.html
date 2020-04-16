@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+    <p>Are you sure you want to permanently delete this select row ?</p> 
+      <button mat-raised-button color="warn" type="Button" (click)="onYesClick(data.id)">Yes</button>
+      <button mat-raised-button class="ml-3" color="primary" type="button" (click)="onNoClick()">No</button>
+</div>
+    <!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+    <div mat-dialog-content>
+      <p>What's your favorite animal?</p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.animal">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button >Ok</button>
+    </div> -->
